@@ -1,4 +1,4 @@
-package kr.hhplus.be.server.infrastructure.order;
+package kr.hhplus.be.server.infrastructure.kafka;
 
 import kr.hhplus.be.server.domain.product.ProductOrderedEvent;
 import lombok.RequiredArgsConstructor;

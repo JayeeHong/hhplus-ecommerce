@@ -16,10 +16,9 @@ import kr.hhplus.be.server.domain.product.ProductService;
 import kr.hhplus.be.server.domain.user.UserCouponInfo.UsableCoupon;
 import kr.hhplus.be.server.domain.user.UserCouponService;
 import kr.hhplus.be.server.domain.user.UserService;
-import kr.hhplus.be.server.infrastructure.order.ProductOrderKafkaProducer;
+import kr.hhplus.be.server.infrastructure.kafka.ProductOrderKafkaProducer;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
