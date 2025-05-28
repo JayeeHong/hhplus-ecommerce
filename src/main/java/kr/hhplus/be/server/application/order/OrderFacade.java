@@ -16,6 +16,7 @@ import kr.hhplus.be.server.domain.product.ProductService;
 import kr.hhplus.be.server.domain.user.UserCouponInfo.UsableCoupon;
 import kr.hhplus.be.server.domain.user.UserCouponService;
 import kr.hhplus.be.server.domain.user.UserService;
+import kr.hhplus.be.server.infrastructure.order.ProductOrderKafkaProducer;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.context.ApplicationEventPublisher;
@@ -33,7 +34,7 @@ public class OrderFacade {
     private final OrderService orderService;
     private final BalanceService balanceService;
     private final PaymentService paymentService;
-    private final ApplicationEventPublisher publisher;
+    private final ProductOrderKafkaProducer kafkaProducer;
 
     @Transactional
     public OrderResult.Order orderPayment(OrderCriteria.OrderPayment criteria) {
@@ -60,8 +61,8 @@ public class OrderFacade {
         paymentService.pay(criteria.toPaymentCommand(order));
         orderService.paidOrder(order.getOrderId());
 
-        // 커밋 후 캐싱을 위해 이벤트 발행
-        publisher.publishEvent(
+        // 카프카 이벤트 발행
+        kafkaProducer.send(
             new ProductOrderedEvent(orderProducts.getOrderItems(), LocalDate.now(ZoneId.of("Asia/Seoul")))
         );
 
