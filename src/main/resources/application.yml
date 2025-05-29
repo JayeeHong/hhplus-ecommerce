@@ -20,6 +20,16 @@ spring:
     properties:
       hibernate.timezone.default_storage: NORMALIZE_UTC
       hibernate.jdbc.time_zone: UTC
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # 메시지 키를 String으로 직렬화
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # 메시지 값을 JSON으로 직렬화 (자바 객체 -> JSON)
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # 메시지 값을 JSON으로 역직렬화 (JSON -> 자바 객체)
+      properties:
+        spring.json.trusted.packages: '*' # 역직렬화 시 신뢰하는 패키지
 
 ---
 spring.config.activate.on-profile: local, test
@@ -60,3 +70,8 @@ redisson:
 coupon:
   issue:
     limit: 100
+
+---
+kafka:
+  topic:
+    product-ordered: product-ordered

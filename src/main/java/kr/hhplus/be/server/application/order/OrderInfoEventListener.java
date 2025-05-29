@@ -1,6 +1,5 @@
 package kr.hhplus.be.server.application.order;
 
-import kr.hhplus.be.server.domain.order.Order;
 import kr.hhplus.be.server.domain.order.OrderExternalClient;
 import kr.hhplus.be.server.domain.order.OrderInfoEvent;
 import lombok.RequiredArgsConstructor;
