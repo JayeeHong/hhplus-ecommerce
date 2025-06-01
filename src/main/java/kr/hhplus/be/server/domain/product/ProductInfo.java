@@ -1,5 +1,6 @@
 package kr.hhplus.be.server.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -30,7 +31,12 @@ public class ProductInfo {
         private final long productPrice;
         private final int quantity;
 
-        private OrderItem(Long productId, String productName, long productPrice, int quantity) {
+        private OrderItem(
+            @JsonProperty("productId") Long productId,
+            @JsonProperty("productName") String productName,
+            @JsonProperty("productPrice") long productPrice,
+            @JsonProperty("quantity") int quantity) {
+
             this.productId = productId;
             this.productName = productName;
             this.productPrice = productPrice;
