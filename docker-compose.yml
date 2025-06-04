@@ -20,6 +20,13 @@ services:
       - ./data/redis/:/data
     command: redis-server --appendonly yes
 
+  k6:
+    image: loadimpact/k6
+    volumes:
+      - ./scripts:/scripts
+    entrypoint: ""
+    command: ["k6", "run", "/scripts/k6/coupon/peak_test.js"]
+
 networks:
   default:
     driver: bridge
