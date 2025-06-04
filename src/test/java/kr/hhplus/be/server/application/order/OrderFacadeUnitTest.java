@@ -17,6 +17,7 @@ import kr.hhplus.be.server.domain.product.ProductService;
 import kr.hhplus.be.server.domain.user.UserCouponInfo;
 import kr.hhplus.be.server.domain.user.UserCouponService;
 import kr.hhplus.be.server.domain.user.UserService;
+import kr.hhplus.be.server.infrastructure.kafka.ProductOrderKafkaProducer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -55,6 +56,9 @@ class OrderFacadeUnitTest {
 
     @Mock
     private ApplicationEventPublisher publisher;
+
+    @Mock
+    private ProductOrderKafkaProducer kafkaProducer;
 
     @Test
     @DisplayName("주문 및 결제를 한다.")

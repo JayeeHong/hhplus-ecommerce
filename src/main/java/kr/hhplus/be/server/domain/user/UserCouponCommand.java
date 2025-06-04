@@ -20,6 +20,10 @@ public class UserCouponCommand {
         public static Publish of(Long userId, Long couponId) {
             return new Publish(userId, couponId);
         }
+
+        public static Publish toUserCouponCommandPublish(Long userId, Long couponId) {
+            return Publish.of(userId, couponId);
+        }
     }
 
     @Getter
